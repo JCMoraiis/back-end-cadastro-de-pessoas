@@ -1,25 +1,14 @@
-package br.com.softplan.cadastrodepessoas.model;
+package br.com.softplan.cadastrodepessoas.controller.form;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.softplan.cadastrodepessoas.model.Person;
 
-@Entity
-public class Person {
+public class PersonForm {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column(unique=true)
 	private String cpf;
 	private String name;
-	@Enumerated(EnumType.STRING)
-	private Genders gender;
+	private String gender;
 	private String email;
 	private String dateOfBirth;
 	private String naturalness;
@@ -27,30 +16,11 @@ public class Person {
 	private LocalDateTime dateOfCriation = LocalDateTime.now();
 	private LocalDateTime dateOfModification = null;
 	
-	public Person() { }
-	
-	public Person(String cpf, String name, String gender, String email, String dateOfBirth,
-			String naturalness, String nationality, LocalDateTime dateOfCriation, LocalDateTime dateOfModification) {
-		super();
-		this.cpf = cpf;
-		this.name = name;
-		this.gender = Genders.valueOf(gender);
-		this.email = email;
-		this.dateOfBirth = dateOfBirth;
-		this.naturalness = naturalness;
-		this.nationality = nationality;
-		this.dateOfCriation = dateOfCriation;
-		this.dateOfModification = dateOfModification;
+	public Person toConvert() {
+		return new Person(cpf,name,gender,email,dateOfBirth,naturalness,nationality,dateOfCriation,dateOfModification);
 	}
-
 	public String getCpf() {
 		return cpf;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
@@ -61,10 +31,10 @@ public class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Genders getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(Genders gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public String getEmail() {
@@ -102,5 +72,5 @@ public class Person {
 	}
 	public void setDateOfModification(LocalDateTime dateOfModification) {
 		this.dateOfModification = dateOfModification;
-	}	
+	}
 }
