@@ -1,19 +1,36 @@
 package br.com.softplan.cadastrodepessoas.model;
 
-import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Person {
 	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(unique=true)
 	private String cpf;
 	private String name;
+	@Enumerated(EnumType.STRING)
 	private Genders gender;
 	private String email;
-	private LocalDateTime dateOfBirth;
+	private String dateOfBirth;
 	private String naturalness;
 	private String nationality;
 	
 	public String getCpf() {
 		return cpf;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
@@ -36,10 +53,10 @@ public class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public LocalDateTime getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(LocalDateTime dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	public String getNaturalness() {
@@ -51,9 +68,8 @@ public class Person {
 	public String getNationality() {
 		return nationality;
 	}
-	public void setNacionality(String nacionality) {
-		this.nationality = nacionality;
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
 	}
-	
 	
 }
