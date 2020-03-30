@@ -6,11 +6,11 @@ public class Person {
 	
 	private String cpf;
 	private String name;
-	private Genders genders;
+	private Genders gender;
 	private String email;
 	private LocalDateTime dateOfBirth;
 	private String naturalness;
-	private String nacionality;
+	private String nationality;
 	
 	public String getCpf() {
 		return cpf;
@@ -24,11 +24,11 @@ public class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Genders getGenders() {
-		return genders;
+	public Genders getGender() {
+		return gender;
 	}
-	public void setGenders(Genders genders) {
-		this.genders = genders;
+	public void setGender(Genders gender) {
+		this.gender = gender;
 	}
 	public String getEmail() {
 		return email;
@@ -48,11 +48,11 @@ public class Person {
 	public void setNaturalness(String naturalness) {
 		this.naturalness = naturalness;
 	}
-	public String getNacionality() {
-		return nacionality;
+	public String getNationality() {
+		return nationality;
 	}
 	public void setNacionality(String nacionality) {
-		this.nacionality = nacionality;
+		this.nationality = nacionality;
 	}
 	
 	
