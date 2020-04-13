@@ -47,10 +47,13 @@ public class PersonController {
 	
 	@PutMapping("atualizar/{id}")
 	@Transactional
-	public ResponseEntity<PersonDTO> atualizar(@PathVariable Long id, @RequestBody @Valid PersonFormUpdate form) {
-		Person person = form.atualizar(id, personRepository);
-		
-		return ResponseEntity.ok(new PersonDTO(person));
+	public ResponseEntity<PersonDTO> update(@PathVariable Long id, @RequestBody @Valid PersonFormUpdate form) {
+		Optional<Person> optional = personRepository.findById(id);
+		if (optional.isPresent()) {
+			Person person = form.atualizar(id, personRepository);
+			return ResponseEntity.ok(new PersonDTO(person));
+		}
+		return ResponseEntity.notFound().build();
 	}
 	
 	@DeleteMapping("remover/{id}")
