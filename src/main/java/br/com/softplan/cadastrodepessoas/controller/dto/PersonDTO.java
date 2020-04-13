@@ -1,6 +1,6 @@
 package br.com.softplan.cadastrodepessoas.controller.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import br.com.softplan.cadastrodepessoas.model.Person;
 
@@ -11,7 +11,7 @@ public class PersonDTO {
 	private String name;
 	private String gender;
 	private String email;
-	private String dateOfBirth;
+	private LocalDate dateOfBirth;
 	private String naturalness;
 	private String nationality;
 	
@@ -47,7 +47,7 @@ public class PersonDTO {
 	public String getEmail() {
 		return email;
 	}
-	public String getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
 	public String getNaturalness() {

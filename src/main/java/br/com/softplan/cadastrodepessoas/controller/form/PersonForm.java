@@ -1,23 +1,38 @@
 package br.com.softplan.cadastrodepessoas.controller.form;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import br.com.softplan.cadastrodepessoas.model.Person;
 
 public class PersonForm {
 	
-	private String cpf;
-	private String name;
-	private String gender;
-	private String email;
-	private String dateOfBirth;
-	private String naturalness;
-	private String nationality;
-	private LocalDateTime dateOfCriation = LocalDateTime.now();
-	private LocalDateTime dateOfModification = null;
+	@NotEmpty @CPF @Column(unique=true)
+	protected String cpf;
+	@NotEmpty @Size(min = 2, max = 30)
+	protected String name;
+	protected String gender;
+	@Email
+	protected String email;
+	@NotNull @Past
+	protected LocalDate dateOfBirth;
+	@Size(min = 2, max = 30)
+	protected String naturalness;
+	@Size(min = 2, max = 30)
+	protected String nationality;
+	@NotNull
+	private LocalDate dateOfCriation = LocalDate.now();
 	
 	public Person toConvert() {
-		return new Person(cpf,name,gender,email,dateOfBirth,naturalness,nationality,dateOfCriation,dateOfModification);
+		return new Person(cpf,name,gender,email,dateOfBirth,naturalness,nationality,dateOfCriation);
 	}
 	public String getCpf() {
 		return cpf;
@@ -43,10 +58,10 @@ public class PersonForm {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	public String getNaturalness() {
@@ -61,16 +76,10 @@ public class PersonForm {
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
-	public LocalDateTime getDateOfCriation() {
+	public LocalDate getDateOfCriation() {
 		return dateOfCriation;
 	}
-	public void setDateOfCriation(LocalDateTime dateOfCriation) {
+	public void setDateOfCriation(LocalDate dateOfCriation) {
 		this.dateOfCriation = dateOfCriation;
-	}
-	public LocalDateTime getDateOfModification() {
-		return dateOfModification;
-	}
-	public void setDateOfModification(LocalDateTime dateOfModification) {
-		this.dateOfModification = dateOfModification;
 	}
 }

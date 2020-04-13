@@ -2,6 +2,8 @@ package br.com.softplan.cadastrodepessoas.controller;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +30,7 @@ public class PersonController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public ResponseEntity<PersonDTO> register(@RequestBody PersonForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<PersonDTO> register(@RequestBody @Valid PersonForm form, UriComponentsBuilder uriBuilder) {
 		Person person = form.toConvert();
 		personRepository.save(person);
 		

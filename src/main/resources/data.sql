@@ -1,1 +1,1 @@
-INSERT INTO PERSON(cpf, name, gender, email, date_of_birth, naturalness, nationality) VALUES('06327660428', 'julio', 'Masculino', 'juliocesar_morais@outlook.com', '17-08-1998', 'Pernambuco', 'Brasileiro');
+INSERT INTO PERSON(cpf, date_of_birth, date_of_criation, email, gender, name, nationality, naturalness) VALUES('06327660428', '1998-08-17', '1998-08-17', 'juliocesar_morais@outlook.com', 'Masculino', 'julio', 'Brasileiro', 'Pernambuco');

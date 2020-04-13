@@ -1,6 +1,6 @@
 package br.com.softplan.cadastrodepessoas.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,16 +21,16 @@ public class Person {
 	@Enumerated(EnumType.STRING)
 	private Genders gender;
 	private String email;
-	private String dateOfBirth;
+	private LocalDate dateOfBirth;
 	private String naturalness;
 	private String nationality;
-	private LocalDateTime dateOfCriation = LocalDateTime.now();
-	private LocalDateTime dateOfModification = null;
+	private LocalDate dateOfCriation = LocalDate.now();
+	private LocalDate dateOfModification;
 	
 	public Person() { }
 	
-	public Person(String cpf, String name, String gender, String email, String dateOfBirth,
-			String naturalness, String nationality, LocalDateTime dateOfCriation, LocalDateTime dateOfModification) {
+	public Person(String cpf, String name, String gender, String email, LocalDate dateOfBirth,
+			String naturalness, String nationality, LocalDate dateOfCriation, LocalDate dateOfModification) {
 		super();
 		this.cpf = cpf;
 		this.name = name;
@@ -42,7 +42,18 @@ public class Person {
 		this.dateOfCriation = dateOfCriation;
 		this.dateOfModification = dateOfModification;
 	}
-
+	public Person(String cpf, String name, String gender, String email, LocalDate dateOfBirth,
+			String naturalness, String nationality, LocalDate dateOfCriation) {
+		super();
+		this.cpf = cpf;
+		this.name = name;
+		this.gender = Genders.valueOf(gender);
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.naturalness = naturalness;
+		this.nationality = nationality;
+		this.dateOfCriation = dateOfCriation;
+	}
 	public String getCpf() {
 		return cpf;
 	}
@@ -73,10 +84,10 @@ public class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getDateOfBirth() {
+	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	public String getNaturalness() {
@@ -91,16 +102,16 @@ public class Person {
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
-	public LocalDateTime getDateOfCriation() {
+	public LocalDate getDateOfCriation() {
 		return dateOfCriation;
 	}
-	public void setDateOfCriation(LocalDateTime dateOfCriation) {
+	public void setDateOfCriation(LocalDate dateOfCriation) {
 		this.dateOfCriation = dateOfCriation;
 	}
-	public LocalDateTime getDateOfModification() {
+	public LocalDate getDateOfModification() {
 		return dateOfModification;
 	}
-	public void setDateOfModification(LocalDateTime dateOfModification) {
+	public void setDateOfModification(LocalDate dateOfModification) {
 		this.dateOfModification = dateOfModification;
 	}	
 }
