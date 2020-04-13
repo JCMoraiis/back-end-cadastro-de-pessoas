@@ -29,12 +29,12 @@ public class Person {
 	
 	public Person() { }
 	
-	public Person(String cpf, String name, String gender, String email, LocalDate dateOfBirth,
+	public Person(String cpf, String name, Genders gender, String email, LocalDate dateOfBirth,
 			String naturalness, String nationality, LocalDate dateOfCriation, LocalDate dateOfModification) {
 		super();
 		this.cpf = cpf;
 		this.name = name;
-		this.gender = Genders.valueOf(gender);
+		this.gender = gender;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 		this.naturalness = naturalness;
@@ -42,17 +42,28 @@ public class Person {
 		this.dateOfCriation = dateOfCriation;
 		this.dateOfModification = dateOfModification;
 	}
-	public Person(String cpf, String name, String gender, String email, LocalDate dateOfBirth,
+	public Person(String cpf, String name, Genders gender, String email, LocalDate dateOfBirth,
 			String naturalness, String nationality, LocalDate dateOfCriation) {
 		super();
 		this.cpf = cpf;
 		this.name = name;
-		this.gender = Genders.valueOf(gender);
+		this.gender = gender;
 		this.email = email;
 		this.dateOfBirth = dateOfBirth;
 		this.naturalness = naturalness;
 		this.nationality = nationality;
 		this.dateOfCriation = dateOfCriation;
+	}
+	public Person(String name, Genders gender, String email, LocalDate dateOfBirth,
+			String naturalness, String nationality, LocalDate dateOfModification) {
+		super();
+		this.name = name;
+		this.gender = gender;
+		this.email = email;
+		this.dateOfBirth = dateOfBirth;
+		this.naturalness = naturalness;
+		this.nationality = nationality;
+		this.dateOfModification = dateOfModification;
 	}
 	public String getCpf() {
 		return cpf;
