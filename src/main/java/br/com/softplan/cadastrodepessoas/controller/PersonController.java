@@ -1,12 +1,14 @@
 package br.com.softplan.cadastrodepessoas.controller;
 
 import java.net.URI;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -34,6 +36,7 @@ public class PersonController {
 	}
 	
 	@PostMapping("/cadastrar")
+	@Transactional
 	public ResponseEntity<PersonDTO> register(@RequestBody @Valid PersonForm form, UriComponentsBuilder uriBuilder) {
 		Person person = form.toConvert();
 		personRepository.save(person);
@@ -48,5 +51,16 @@ public class PersonController {
 		Person person = form.atualizar(id, personRepository);
 		
 		return ResponseEntity.ok(new PersonDTO(person));
+	}
+	
+	@DeleteMapping("remover/{id}")
+	@Transactional
+	public ResponseEntity<?> remove(@PathVariable Long id) {
+		Optional<Person> optional = personRepository.findById(id);
+		if (optional.isPresent()) {
+			personRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.notFound().build();
 	}
 }
